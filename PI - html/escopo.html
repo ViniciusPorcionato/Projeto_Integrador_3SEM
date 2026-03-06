@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>PI III - XYZ | Escopo técnico</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="page-wrapper">
+
+    <aside class="sidebar">
+        <div class="brand">
+            <div class="brand-title">Projeto Integrador III</div>
+            <div class="brand-subtitle">Empresa XYZ Metalúrgica Integrada Ltda.</div>
+        </div>
+
+        <div class="nav-section-title">Navegação</div>
+        <ul class="nav-menu">
+            <li><a href="index.html"><span class="icon">🏠</span>Visão geral</a></li>
+            <li><a href="situacao.html"><span class="icon">📄</span>Situação-problema</a></li>
+            <li><a href="escopo.html" class="active"><span class="icon">🎯</span>Escopo técnico</a></li>
+            <li><a href="arquitetura.html"><span class="icon">🧱</span>Arquitetura</a></li>
+            <li><a href="grupos.html"><span class="icon">👥</span>Grupos & Funções</a></li>
+            <li><a href="entregaveis.html"><span class="icon">📦</span>Entregáveis</a></li>
+            <li><a href="diagrama.html"><span class="icon">🗺️</span>Diagrama</a></li>
+        </ul>
+
+        <div class="sidebar-footer">
+            Três variáveis essenciais
+        </div>
+    </aside>
+
+    <main class="content">
+        <div class="page-header">
+            <div>
+                <div class="page-title">Escopo técnico</div>
+                <div class="page-subtitle">Três variáveis essenciais do piloto</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">Introdução</div>
+            <p>
+                A empresa XYZ definiu <strong>três variáveis essenciais</strong> que devem fazer parte do piloto IIoT.
+                Todos os grupos devem implementar essas três variáveis em ambos os cenários (EC2 e PaaS AWS).
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="card-title">
+                <span class="icon">📊</span> 1. Temperatura (entrada analógica)
+            </div>
+            <ul>
+                <li>Medida por um sensor conectado ao CLP (sensor de temperatura real ou simulado).</li>
+                <li>Deve ser lida periodicamente (por exemplo, a cada 5 segundos).</li>
+                <li>Enviada para a nuvem (AWS) e registrada em um banco de dados para histórico.</li>
+                <li>Exibida em tempo (quase) real em um dashboard acessível via celular.</li>
+                <li>Deve permitir visualização de:
+                    <ul>
+                        <li>Temperatura atual;</li>
+                        <li>Histórico em gráfico ou tabela;</li>
+                        <li>Tendências (subindo, estável, descendo).</li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="info-box">
+                <strong>Exemplo:</strong> Sensor lê 65°C → publica via MQTT → chega à nuvem → 
+                grava no BD com timestamp → dashboard mostra em tempo real.
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">
+                <span class="icon">🔘</span> 2. Botão de acionamento (entrada digital)
+            </div>
+            <ul>
+                <li>Botão físico conectado ao CLP (ou simulado em software).</li>
+                <li>Quando o operador identifica qualquer condição relevante (ruído, cheiro estranho, peça não conforme, necessidade de ajuste), ele <strong>pressiona o botão</strong>.</li>
+                <li>Cada acionamento deve gerar um <strong>evento</strong> que:
+                    <ul>
+                        <li>é enviado para a nuvem;</li>
+                        <li>é gravado no banco de dados com <strong>timestamp</strong>;</li>
+                        <li>é associado à temperatura e ao estado da máquina naquele momento.</li>
+                    </ul>
+                </li>
+                <li>Serve como base para:
+                    <ul>
+                        <li>Análise de comportamento da máquina;</li>
+                        <li>Incentivar o registro simples de ocorrências;</li>
+                        <li>Criar histórico confiável de eventos.</li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="info-box">
+                <strong>Exemplo:</strong> Operador pressiona botão às 14:32:15 → evento é enviado → 
+                BD registra: "Evento em 14:32:15, Temp=72°C, Status=Usinando" → 
+                dashboard mostra "Ocorrência registrada".
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">
+                <span class="icon">💡</span> 3. LED de sinalização (saída digital)
+            </div>
+            <ul>
+                <li>Um LED físico conectado ao CLP (ou simulado em software).</li>
+                <li>Pode ser ligado ou desligado <strong>remotamente</strong> por comando vindo da nuvem.</li>
+                <li>O aplicativo mobile ou dashboard deve ter um <strong>botão virtual</strong> que:
+                    <ul>
+                        <li>envia uma mensagem à nuvem (ex.: "Acionar LED de alerta");</li>
+                        <li>a nuvem recebe e envia comando ao CLP;</li>
+                        <li>o CLP aciona o LED (liga ou desliga).</li>
+                    </ul>
+                </li>
+                <li>Uso prático:
+                    <ul>
+                        <li>Supervisor confirma uma ação (ex.: "manutenção em andamento", "parada autorizada");</li>
+                        <li>Toca no botão no app;</li>
+                        <li>LED no painel acende, sinalizando para o operador que a orientação foi recebida;</li>
+                        <li>Feedback visual imediato, sem depender de leitura de mensagens de texto.</li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="info-box">
+                <strong>Exemplo:</strong> Supervisor toca em "Acionar LED Manutenção" no app → 
+                mensagem vai para nuvem → nuvem envia comando ao CLP → LED acende na máquina → 
+                operador vê imediatamente que manutenção foi autorizada.
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">Resumo das três variáveis</div>
+            <table style="width: 100%; border-collapse: collapse; margin-top: 8px;">
+                <tr style="border-bottom: 1px solid rgba(148, 163, 184, 0.3);">
+                    <th style="text-align: left; padding: 8px; color: var(--accent);">Variável</th>
+                    <th style="text-align: left; padding: 8px; color: var(--accent);">Tipo</th>
+                    <th style="text-align: left; padding: 8px; color: var(--accent);">Função</th>
+                </tr>
+                <tr style="border-bottom: 1px solid rgba(148, 163, 184, 0.3);">
+                    <td style="padding: 8px;">Temperatura</td>
+                    <td style="padding: 8px;">Entrada analógica</td>
+                    <td style="padding: 8px;">Monitorar em tempo real</td>
+                </tr>
+                <tr style="border-bottom: 1px solid rgba(148, 163, 184, 0.3);">
+                    <td style="padding: 8px;">Botão</td>
+                    <td style="padding: 8px;">Entrada digital</td>
+                    <td style="padding: 8px;">Registrar eventos/ocorrências</td>
+                </tr>
+                <tr>
+                    <td style="padding: 8px;">LED</td>
+                    <td style="padding: 8px;">Saída digital</td>
+                    <td style="padding: 8px;">Sinalizar comandos remotos</td>
+                </tr>
+            </table>
+        </div>
+
+    </main>
+
+</div>
+</body>
+</html>

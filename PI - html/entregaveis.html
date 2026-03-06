@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>PI III - XYZ | Entregáveis</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="page-wrapper">
+
+    <aside class="sidebar">
+        <div class="brand">
+            <div class="brand-title">Projeto Integrador III</div>
+            <div class="brand-subtitle">Empresa XYZ Metalúrgica Integrada Ltda.</div>
+        </div>
+
+        <div class="nav-section-title">Navegação</div>
+        <ul class="nav-menu">
+            <li><a href="index.html"><span class="icon">🏠</span>Visão geral</a></li>
+            <li><a href="situacao.html"><span class="icon">📄</span>Situação-problema</a></li>
+            <li><a href="escopo.html"><span class="icon">🎯</span>Escopo técnico</a></li>
+            <li><a href="arquitetura.html"><span class="icon">🧱</span>Arquitetura</a></li>
+            <li><a href="grupos.html"><span class="icon">👥</span>Grupos & Funções</a></li>
+            <li><a href="entregaveis.html" class="active"><span class="icon">📦</span>Entregáveis</a></li>
+            <li><a href="diagrama.html"><span class="icon">🗺️</span>Diagrama</a></li>
+        </ul>
+
+        <div class="sidebar-footer">
+            4 menores + 2 maiores
+        </div>
+    </aside>
+
+    <main class="content">
+        <div class="page-header">
+            <div>
+                <div class="page-title">Entregáveis do projeto</div>
+                <div class="page-subtitle">6 marcos ao longo do semestre</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">Estrutura geral</div>
+            <p>
+                O projeto é organizado em <strong>6 entregáveis</strong>:
+            </p>
+            <ul>
+                <li><strong>4 entregáveis menores</strong> (intermediários): 7,5% cada = 30% da nota</li>
+                <li><strong>2 entregáveis principais</strong> (finais): 40% + 30% = 70% da nota</li>
+            </ul>
+            <div class="info-box">
+                Total: 100% da nota do Projeto Integrador III.
+            </div>
+        </div>
+
+        <h3 style="color: var(--primary); margin-top: 24px; margin-bottom: 12px;">📦 ENTREGÁVEIS DE MENOR PESO</h3>
+
+        <div class="card">
+            <div class="card-title">
+                <span class="tag">7,5%</span> Entregável Menor 1 – Planejamento & Arquitetura Inicial
+            </div>
+            <p><strong>Quando:</strong> Início do semestre (após apresentação do problema)</p>
+            <p><strong>Conteúdo:</strong></p>
+            <ul>
+                <li>Documento curto (3–5 páginas) com:
+                    <ul>
+                        <li>Resumo da situação-problema da XYZ com as três variáveis (temperatura, botão, LED);</li>
+                        <li>Objetivos do projeto;</li>
+                        <li>Desenho da arquitetura geral (Cenário 1 e Cenário 2) em diagrama simples;</li>
+                        <li>Definição dos papéis dos 6 integrantes;</li>
+                        <li>Cronograma interno do grupo (marcos para os próximos entregáveis);</li>
+                        <li>Esboço inicial de como será a interface mobile/dashboard pensada para inclusão (wireframe ou breve descrição).</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <div class="card-title">
+                <span class="tag">7,5%</span> Entregável Menor 2 – Protótipo Técnico Inicial – EC2 & Fluxo Básico
+            </div>
+            <p><strong>Quando:</strong> 1º terço do semestre</p>
+            <p><strong>Conteúdo:</strong></p>
+            <ul>
+                <li>EC2 criada e acessível.</li>
+                <li>Mosquitto, Node-RED e MySQL instalados (mesmo que a configuração ainda esteja simples).</li>
+                <li>Demonstração de um fluxo mínimo:
+                    <ul>
+                        <li>Uma fonte de dados simulada (ex.: inject node no Node-RED ou script simples) enviando "temperatura" e "evento de botão" para o Mosquitto;</li>
+                        <li>Node-RED recebendo e gravando esses dados no MySQL;</li>
+                        <li>Dashboard inicial do Node-RED exibindo pelo menos:
+                            <ul>
+                                <li>temperatura atual;</li>
+                                <li>indicador quando o botão é "acionado" (mesmo que por simulação).</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>Entrega pode ser:
+                    <ul>
+                        <li>Print screens;</li>
+                        <li>Pequeno vídeo (1–2 minutos);</li>
+                        <li>Arquivo exportado do fluxo do Node-RED.</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <div class="card-title">
+                <span class="tag">7,5%</span> Entregável Menor 3 – Protótipo de Interface & Lógica de IA / Estruturas de Dados
+            </div>
+            <p><strong>Quando:</strong> Meio do semestre</p>
+            <p><strong>Conteúdo:</strong></p>
+            <ul>
+                <li>Protótipo da interface mobile/dashboard:
+                    <ul>
+                        <li>Wireframes ou primeiras telas reais (em app ou Node-RED responsivo);</li>
+                        <li>Indicação de onde aparecerão:
+                            <ul>
+                                <li>temperatura;</li>
+                                <li>histórico;</li>
+                                <li>eventos de botão;</li>
+                                <li>comando para o LED.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>Documento curto explicando:
+                    <ul>
+                        <li>Que estruturas de dados serão usadas (ex.: lista de últimas N leituras, fila de eventos);</li>
+                        <li>Qual lógica de IA/análise será implementada (ex.: limites para estado normal/atenção/crítico, cálculo de média móvel).</li>
+                    </ul>
+                </li>
+                <li>Pode incluir:
+                    <ul>
+                        <li>Pseudocódigo ou pequeno trecho de código demonstrando essa lógica em protótipo.</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <div class="card-title">
+                <span class="tag">7,5%</span> Entregável Menor 4 – Protótipo Técnico Inicial – PaaS AWS & MQTT Dash
+            </div>
+            <p><strong>Quando:</strong> 2º terço do semestre</p>
+            <p><strong>Conteúdo:</strong></p>
+            <ul>
+                <li>AWS IoT Core configurado:
+                    <ul>
+                        <li>pelo menos uma "thing";</li>
+                        <li>um tópico para temperatura;</li>
+                        <li>um tópico para eventos de botão;</li>
+                        <li>um tópico para comando do LED.</li>
+                    </ul>
+                </li>
+                <li>Regra IoT (ou Lambda) configurada para:
+                    <ul>
+                        <li>guardar mensagens de temperatura e botão em um banco gerenciado (mesmo que ainda sem modelo final completíssimo).</li>
+                    </ul>
+                </li>
+                <li>MQTT Dash no celular:
+                    <ul>
+                        <li>Recebendo a variável de temperatura em tempo real (ou em teste);</li>
+                        <li>Mostrando de alguma forma o acionamento do botão (um widget mudando de estado, por exemplo).</li>
+                    </ul>
+                </li>
+                <li>Entrega:
+                    <ul>
+                        <li>Print screens da configuração do IoT Core (tópicos, rules) e do MQTT Dash;</li>
+                        <li>Pequeno vídeo (1–2 minutos) mostrando o dado chegando no celular.</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <h3 style="color: var(--primary); margin-top: 28px; margin-bottom: 12px;">🎯 ENTREGÁVEIS DE MAIOR PESO</h3>
+
+        <div class="card">
+            <div class="card-title">
+                <span class="tag">40%</span> Entregável Principal 1 – Sistema Completo Funcionando
+            </div>
+            <p><strong>Quando:</strong> Final do semestre (antes da apresentação final)</p>
+            <p><strong>Conteúdo:</strong></p>
+
+            <p><strong>Cenário 1 – EC2 (IaaS)</strong></p>
+            <ul>
+                <li>EC2 Linux criada, acessível e documentada.</li>
+                <li>Mosquitto, Node-RED e MySQL instalados e configurados.</li>
+                <li>Fluxo funcionando "fim a fim":
+                    <ul>
+                        <li>CLP/simulador envia temperatura e evento de botão via MQTT → Mosquitto (EC2);</li>
+                        <li>Node-RED recebe, trata e grava no MySQL;</li>
+                        <li>Node-RED gera dashboard com:
+                            <ul>
+                                <li>temperatura atual e histórico simples;</li>
+                                <li>registro visual de acionamento de botão (últimos eventos);</li>
+                            </ul>
+                        </li>
+                        <li>Pelo dashboard/mobile, usuário envia comando para acender/apagar o LED:
+                            <ul>
+                                <li>Dash/app → MQTT → Node-RED/Mosquitto → CLP → LED acende/apaga.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>Aspectos de IA/estruturas de dados integrados:
+                    <ul>
+                        <li>Estado da máquina classificado em normal/atenção/crítico.</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <p><strong>Cenário 2 – PaaS AWS (IoT Core + BD + MQTT Dash)</strong></p>
+            <ul>
+                <li>AWS IoT Core configurado (things, certificados, tópicos, políticas).</li>
+                <li>Regras IoT ou Lambda gravando dados em banco gerenciado.</li>
+                <li>CLP/simulador envia temperatura e evento de botão para tópicos MQTT do IoT Core.</li>
+                <li>MQTT Dash configurado no celular para:
+                    <ul>
+                        <li>Exibir a temperatura em tempo real (gauge, por exemplo);</li>
+                        <li>Indicar quando o botão foi acionado (widget de log ou indicador);</li>
+                        <li>Enviar comando de ligar/desligar o LED (publicando em tópico específico).</li>
+                    </ul>
+                </li>
+                <li>Demonstração de comparação básica entre os cenários:
+                    <ul>
+                        <li>O que foi mais fácil/difícil;</li>
+                        <li>Onde exige mais conhecimento de infraestrutura;</li>
+                        <li>Potenciais custos/escalabilidade (em nível conceitual).</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <p><strong>Forma de avaliação:</strong></p>
+            <ul>
+                <li>Demonstração prática em sala/laboratório (live);</li>
+                <li>Rubrica com itens como:
+                    <ul>
+                        <li>Funcionamento técnico (fluxos completos);</li>
+                        <li>Estabilidade (não quebrar na demo);</li>
+                        <li>Uso correto de MQTT, BD, app/dash;</li>
+                        <li>Aplicação da lógica de IA / análise simples.</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <div class="card-title">
+                <span class="tag">30%</span> Entregável Principal 2 – Documentação + Apresentação Oral + Vídeo
+            </div>
+            <p><strong>Quando:</strong> Final do semestre (apresentação final)</p>
+            <p><strong>Componentes:</strong></p>
+
+            <p><strong>1. Documentação escrita (Relatório Técnico)</strong></p>
+            <ul>
+                <li>Contexto e problema (empresa XYZ, célula de produção, variáveis: temperatura, botão, LED).</li>
+                <li>Objetivos gerais e específicos do projeto.</li>
+                <li>Arquitetura dos dois cenários (Cenário 1 e 2) com diagramas:
+                    <ul>
+                        <li>CLP → MQTT → Nuvem → BD → Dashboard/App;</li>
+                    </ul>
+                </li>
+                <li>Descrição dos componentes usados:
+                    <ul>
+                        <li>CLP, Mosquitto, Node-RED, MySQL, EC2, AWS IoT Core, RDS/DynamoDB, MQTT Dash, app mobile (se houver);</li>
+                    </ul>
+                </li>
+                <li>Detalhamento da lógica de IA/análise e estruturas de dados adotadas.</li>
+                <li>Reflexão sobre:
+                    <ul>
+                        <li>Inclusão social e usabilidade da solução (como o app/dash foi pensado para operadores reais);</li>
+                        <li>Impacto na cultura organizacional (registro de ocorrências, comunicação operador–supervisor).</li>
+                    </ul>
+                </li>
+                <li>Comparação entre Cenário 1 e 2 (vantagens, desvantagens, complexidade).</li>
+                <li>Papéis da equipe: quem fez o quê.</li>
+            </ul>
+
+            <p><strong>2. Apresentação oral (em grupo)</strong></p>
+            <ul>
+                <li>Duração sugerida: 10–15 minutos.</li>
+                <li>Estrutura:
+                    <ul>
+                        <li>Resumo do problema da XYZ;</li>
+                        <li>Visão geral da solução (dois cenários);</li>
+                        <li>Demonstração rápida dos dashboards/apps;</li>
+                        <li>Comentário sobre IA, estruturas de dados, DevOps;</li>
+                        <li>Reflexão sobre pessoas/cultura/inclusão.</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <p><strong>3. Vídeo de demonstração</strong></p>
+            <ul>
+                <li>Duração sugerida: 5–10 minutos.</li>
+                <li>Deve mostrar:
+                    <ul>
+                        <li>CLP/simulador (temperatura, botão, LED);</li>
+                        <li>Painel em Node-RED (Cenário 1) e MQTT Dash (Cenário 2) em uso;</li>
+                        <li>Comando via celular acionando o LED;</li>
+                        <li>Tela/trecho explicando a lógica de IA simples (por exemplo, mudança de cor/status quando atinge um limite).</li>
+                    </ul>
+                </li>
+                <li>Pode ser gravado em laboratório, com narração dos próprios alunos.</li>
+            </ul>
+
+            <p><strong>Forma de avaliação:</strong></p>
+            <ul>
+                <li>Qualidade da documentação (clareza, organização, completude).</li>
+                <li>Qualidade da apresentação (tempo, linguagem, domínio do conteúdo).</li>
+                <li>Clareza e fluidez do vídeo (se consegue mostrar "fim a fim" a solução).</li>
+            </ul>
+        </div>
+
+    </main>
+
+</div>
+</body>
+</html>

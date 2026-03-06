@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>PI III - XYZ | Diagrama</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+</head>
+<body>
+<div class="page-wrapper">
+
+    <aside class="sidebar">
+        <div class="brand">
+            <div class="brand-title">Projeto Integrador III</div>
+            <div class="brand-subtitle">Empresa XYZ Metalúrgica Integrada Ltda.</div>
+        </div>
+
+        <div class="nav-section-title">Navegação</div>
+        <ul class="nav-menu">
+            <li><a href="index.html"><span class="icon">🏠</span>Visão geral</a></li>
+            <li><a href="situacao.html"><span class="icon">📄</span>Situação-problema</a></li>
+            <li><a href="escopo.html"><span class="icon">🎯</span>Escopo técnico</a></li>
+            <li><a href="arquitetura.html"><span class="icon">🧱</span>Arquitetura</a></li>
+            <li><a href="grupos.html"><span class="icon">👥</span>Grupos & Funções</a></li>
+            <li><a href="entregaveis.html"><span class="icon">📦</span>Entregáveis</a></li>
+            <li><a href="diagrama.html" class="active"><span class="icon">🗺️</span>Diagrama</a></li>
+        </ul>
+
+        <div class="sidebar-footer">
+            Visualização da arquitetura
+        </div>
+    </aside>
+
+    <main class="content">
+        <div class="page-header">
+            <div>
+                <div class="page-title">Diagrama dos dois cenários</div>
+                <div class="page-subtitle">Arquitetura IIoT completa</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">Visão geral</div>
+            <p>
+                O diagrama abaixo representa o <strong>núcleo comum</strong> (CLP + acesso mobile) e os dois cenários:
+            </p>
+            <ul>
+                <li><strong>Cenário 1 (EC2 + Node-RED + Mosquitto + MySQL)</strong> – Infraestrutura própria (IaaS)</li>
+                <li><strong>Cenário 2 (AWS IoT + BD gerenciado + MQTT Dash)</strong> – Serviços gerenciados (PaaS)</li>
+            </ul>
+            <div class="info-box">
+                Você pode baixar o diagrama como PNG ou SVG para usar em apresentações, documentos ou estudar offline.
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="mermaid">
+flowchart TB
+    %% Estilo
+    classDef comum fill:#FFE4B5,stroke:#FF8C00,stroke-width:3px,color:#000
+    classDef cenario1 fill:#E6F3FF,stroke:#0066CC,stroke-width:2px,color:#000
+    classDef cenario2 fill:#E6FFE6,stroke:#00AA00,stroke-width:2px,color:#000
+
+    %% Núcleo Comum
+    subgraph COMUM["🔧 NÚCLEO COMUM"]
+        CLP["🏭 CLP / Simulador<br/>━━━━━━━━━━<br/>📊 Temperatura analógica<br/>🔘 Botão digital<br/>💡 LED saída digital"]
+        MOBILE["📱 Acesso Mobile<br/>━━━━━━━━━━<br/>Celular / Tablet<br/>Operadores e Supervisores"]
+    end
+
+    %% Cenário 1
+    subgraph CEN1["📦 CENÁRIO 1 - IaaS EC2"]
+        EC2["☁️ AWS EC2<br/>Linux Ubuntu/Debian"]
+
+        subgraph EC2SERVICES["Serviços na EC2"]
+            MOSQ1["🔌 Mosquitto<br/>MQTT Broker"]
+            NR1["🔀 Node-RED<br/>Orquestrador IoT"]
+            MYSQL["🗄️ MySQL<br/>Banco de Dados"]
+        end
+
+        DASH1["📊 Dashboard Web<br/>Node-RED UI<br/>Responsivo"]
+    end
+
+    %% Cenário 2
+    subgraph CEN2["🌐 CENÁRIO 2 - PaaS AWS"]
+        IOTCORE["☁️ AWS IoT Core<br/>MQTT Gerenciado<br/>Things + Certificados"]
+        RULES["⚙️ IoT Rules / Lambda<br/>Processamento"]
+        RDS["🗄️ RDS / DynamoDB<br/>BD Gerenciado"]
+        MQTTDASH["📱 MQTT Dash<br/>App Mobile Nativo<br/>Widgets"]
+    end
+
+    %% Fluxos Cenário 1
+    CLP -->|"📡 MQTT<br/>Temp + Botão"| MOSQ1
+    MOSQ1 --> NR1
+    NR1 -->|"💾 Grava"| MYSQL
+    NR1 -->|"📊 Atualiza"| DASH1
+    MOBILE -->|"🌐 Navegador"| DASH1
+    DASH1 -->|"⚡ Comando LED"| NR1
+    NR1 -->|"📡 MQTT"| MOSQ1
+    MOSQ1 -->|"💡 LED"| CLP
+
+    %% Fluxos Cenário 2
+    CLP -->|"📡 MQTT<br/>Temp + Botão"| IOTCORE
+    IOTCORE --> RULES
+    RULES -->|"💾 Grava"| RDS
+    IOTCORE <-->|"📡 MQTT<br/>Leitura + Cmd"| MQTTDASH
+    MOBILE -->|"📱 App"| MQTTDASH
+    MQTTDASH -->|"⚡ Comando LED"| IOTCORE
+    IOTCORE -->|"💡 LED"| CLP
+
+    %% Aplicar estilos
+    class CLP,MOBILE comum
+    class EC2,MOSQ1,NR1,MYSQL,DASH1 cenario1
+    class IOTCORE,RULES,RDS,MQTTDASH cenario2
+            </div>
+
+            <div class="buttons">
+                <button onclick="downloadDiagram('png')">📥 Baixar como PNG</button>
+                <button onclick="downloadDiagram('svg')">📥 Baixar como SVG</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">Legenda do diagrama</div>
+            <p style="margin-bottom: 12px;"><strong>Cores:</strong></p>
+            <ul>
+                <li><span style="background: #FFE4B5; padding: 2px 6px; border-radius: 3px; color: #000;">🟠 Núcleo Comum</span> – CLP e acesso mobile (usado em ambos cenários)</li>
+                <li><span style="background: #E6F3FF; padding: 2px 6px; border-radius: 3px; color: #000;">🔵 Cenário 1</span> – Infraestrutura própria (EC2 + Mosquitto + Node-RED + MySQL)</li>
+                <li><span style="background: #E6FFE6; padding: 2px 6px; border-radius: 3px; color: #000;">🟢 Cenário 2</span> – Serviços gerenciados (AWS IoT Core + RDS/DynamoDB + MQTT Dash)</li>
+            </ul>
+
+            <p style="margin-top: 16px; margin-bottom: 12px;"><strong>Fluxos:</strong></p>
+            <ul>
+                <li><strong>📡 MQTT:</strong> Comunicação entre CLP e broker (Mosquitto ou AWS IoT Core)</li>
+                <li><strong>💾 Grava:</strong> Armazenamento de dados em banco de dados</li>
+                <li><strong>📊 Atualiza:</strong> Dashboard/app recebe dados em tempo real</li>
+                <li><strong>⚡ Comando:</strong> Comando remoto para acionar LED</li>
+                <li><strong>💡 LED:</strong> Feedback visual no painel da máquina</li>
+            </ul>
+        </div>
+
+

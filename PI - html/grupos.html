@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>PI III - XYZ | Grupos & Funções</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="page-wrapper">
+
+    <aside class="sidebar">
+        <div class="brand">
+            <div class="brand-title">Projeto Integrador III</div>
+            <div class="brand-subtitle">Empresa XYZ Metalúrgica Integrada Ltda.</div>
+        </div>
+
+        <div class="nav-section-title">Navegação</div>
+        <ul class="nav-menu">
+            <li><a href="index.html"><span class="icon">🏠</span>Visão geral</a></li>
+            <li><a href="situacao.html"><span class="icon">📄</span>Situação-problema</a></li>
+            <li><a href="escopo.html"><span class="icon">🎯</span>Escopo técnico</a></li>
+            <li><a href="arquitetura.html"><span class="icon">🧱</span>Arquitetura</a></li>
+            <li><a href="grupos.html" class="active"><span class="icon">👥</span>Grupos & Funções</a></li>
+            <li><a href="entregaveis.html"><span class="icon">📦</span>Entregáveis</a></li>
+            <li><a href="diagrama.html"><span class="icon">🗺️</span>Diagrama</a></li>
+        </ul>
+
+        <div class="sidebar-footer">
+            6 papéis, 1 equipe
+        </div>
+    </aside>
+
+    <main class="content">
+        <div class="page-header">
+            <div>
+                <div class="page-title">Organização dos grupos</div>
+                <div class="page-subtitle">6 alunos, 6 papéis principais</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">Estrutura dos grupos</div>
+            <p>
+                Cada grupo terá <strong>6 integrantes</strong>, e cada um assume um <strong>papel principal</strong>
+                (mas todos podem colaborar em várias áreas). A ideia é refletir a realidade de uma equipe multidisciplinar
+                em um projeto IIoT + Mobile + Cloud.
+            </p>
+            <div class="info-box">
+                Importante: os papéis não são "silos". Todos devem se comunicar, colaborar e entender 
+                o projeto como um todo. Os papéis apenas definem <strong>responsabilidades primárias</strong>.
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">
+                <span class="icon">🎯</span> Papel 1 – Líder de Projeto & Cultura Organizacional
+            </div>
+            <p><strong>Responsável principal por:</strong></p>
+            <ul>
+                <li>Organizar o trabalho do grupo, reuniões, prazos e comunicação interna.</li>
+                <li>Garantir que as decisões técnicas estejam alinhadas ao problema da empresa XYZ (monitorar temperatura, botão, LED, inclusão social).</li>
+                <li>Liderar a parte de <strong>Gestão de Pessoas e Cultura Organizacional</strong>:
+                    <ul>
+                        <li>Como a solução ajuda operadores e supervisores?</li>
+                        <li>Como incentiva o registro de ocorrências (uso do botão, app)?</li>
+                        <li>Como é pensada para inclusão (linguagem, acessibilidade)?</li>
+                    </ul>
+                </li>
+                <li>Coordenar a preparação da <strong>apresentação final</strong> e do <strong>vídeo</strong>, garantindo que todos participem.</li>
+            </ul>
+            <p><strong>Disciplinas mais ligadas:</strong></p>
+            <ul>
+                <li>Gestão de Pessoas e Cultura Organizacional</li>
+                <li>Projeto Integrador III</li>
+                <li>Extensão Universitária III</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <div class="card-title">
+                <span class="icon">🏭</span> Papel 2 – Engenheiro de IIoT / CLP & Interfaces Industriais
+            </div>
+            <p><strong>Responsável principal por:</strong></p>
+            <ul>
+                <li>Configurar o <strong>CLP</strong> (ou simulador) para:
+                    <ul>
+                        <li>ler a <strong>temperatura</strong> (entrada analógica);</li>
+                        <li>ler o <strong>botão</strong> (entrada digital);</li>
+                        <li>acionar o <strong>LED</strong> (saída digital).</li>
+                    </ul>
+                </li>
+                <li>Definir o <strong>mapeamento de variáveis</strong> e sua publicação via MQTT ou API para a nuvem.</li>
+                <li>Garantir que os sinais no chão de fábrica cheguem corretamente até o broker (Mosquitto ou AWS IoT Core).</li>
+                <li>Apoiar o design do <strong>painel/interface industrial</strong> (o que faz sentido para o operador enxergar).</li>
+            </ul>
+            <p><strong>Disciplinas mais ligadas:</strong></p>
+            <ul>
+                <li>Internet das Coisas (IoT)</li>
+                <li>Interfaces Industriais</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <div class="card-title">
+                <span class="icon">☁️</span> Papel 3 – Especialista em Infraestrutura Cloud & DevOps – Cenário 1 (EC2)
+            </div>
+            <p><strong>Responsável principal por:</strong></p>
+            <ul>
+                <li>Criar e configurar a instância <strong>EC2 (Linux)</strong> na AWS.</li>
+                <li>Instalar e configurar:
+                    <ul>
+                        <li><strong>Mosquitto</strong> (broker MQTT);</li>
+                        <li><strong>Node-RED</strong>;</li>
+                        <li><strong>MySQL</strong>.</li>
+                    </ul>
+                </li>
+                <li>Cuidar de:
+                    <ul>
+                        <li>Segurança básica (portas, usuários, senhas);</li>
+                        <li>Scripts de inicialização/instalação quando possível.</li>
+                    </ul>
+                </li>
+                <li>Liderar as práticas de <strong>DevOps</strong> no Cenário 1:
+                    <ul>
+                        <li>Versionar arquivos de configuração;</li>
+                        <li>Documentar o passo a passo;</li>
+                        <li>Apoiar na criação de pipelines simples (se previsto na disciplina DevOps).</li>
+                    </ul>
+                </li>
+            </ul>
+            <p><strong>Disciplinas mais ligadas:</strong></p>
+            <ul>
+                <li>Eletiva II – DevOps</li>
+                <li>Tecnologias de Cloud</li>
+                <li>Internet das Coisas (IoT)</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <div class="card-title">
+                <span class="icon">🌐</span> Papel 4 – Especialista em Cloud PaaS & Integrações – Cenário 2 (AWS IoT)
+            </div>
+            <p><strong>Responsável principal por:</strong></p>
+            <ul>
+                <li>Configurar o <strong>AWS IoT Core</strong>:
+                    <ul>
+                        <li>Things, certificados, políticas, tópicos.</li>
+                    </ul>
+                </li>
+                <li>Criar <strong>regras IoT (IoT Rules)</strong> e/ou <strong>funções Lambda</strong> para gravar:
+                    <ul>
+                        <li>Temperatura;</li>
+                        <li>Eventos de botão;</li>
+                        <li>Comandos para LED</li>
+                    </ul>
+                    em um <strong>banco de dados gerenciado</strong> (RDS ou DynamoDB).
+                </li>
+                <li>Configurar o <strong>MQTT Dash</strong> para:
+                    <ul>
+                        <li>Exibir temperatura;</li>
+                        <li>Indicar eventos de botão;</li>
+                        <li>Enviar comando para o LED.</li>
+                    </ul>
+                </li>
+                <li>Documentar as diferenças (técnicas, de esforço) entre o Cenário 1 e o Cenário 2.</li>
+            </ul>
+            <p><strong>Disciplinas mais ligadas:</strong></p>
+            <ul>
+                <li>Internet das Coisas (IoT)</li>
+                <li>DevOps (Infrastructure as Code, se quiser)</li>
+                <li>Cloud</li>
+                <li>Aplicações de IA (integrações)</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <div class="card-title">
+                <span class="icon">📱</span> Papel 5 – Desenvolvedor Mobile & UX / Inclusão Social
+            </div>
+            <p><strong>Responsável principal por:</strong></p>
+            <ul>
+                <li>Pensar e/ou implementar o <strong>acesso mobile</strong> no Cenário 1:
+                    <ul>
+                        <li>Pode ser:
+                            <ul>
+                                <li>Um <strong>app mobile</strong> (Android/iOS) consumindo API/MQTT;</li>
+                                <li>Ou, no mínimo, garantir que o <strong>dashboard do Node-RED</strong> seja responsivo e usável no celular.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>Projetar a <strong>interface</strong> com foco em:
+                    <ul>
+                        <li>Simplicidade (poucos botões, textos claros);</li>
+                        <li>Cores e ícones significativos (alarme, normal, atenção);</li>
+                        <li>Inclusão social (tamanho de fonte, contraste, símbolos fáceis de entender).</li>
+                    </ul>
+                </li>
+                <li>Trabalhar junto ao Eng. IIoT para decidir:
+                    <ul>
+                        <li>Que dados aparecem na tela;</li>
+                        <li>Como o botão virtual de comando (LED) será apresentado.</li>
+                    </ul>
+                </li>
+            </ul>
+            <p><strong>Disciplinas mais ligadas:</strong></p>
+            <ul>
+                <li>Desenvolvimento Mobile</li>
+                <li>Interfaces Industriais</li>
+                <li>Gestão de Pessoas (inclusão)</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <div class="card-title">
+                <span class="icon">🧠</span> Papel 6 – Especialista em Dados, IA e Estruturas de Dados
+            </div>
+            <p><strong>Responsável principal por:</strong></p>
+            <ul>
+                <li>Definir o <strong>modelo lógico de armazenamento de dados</strong> (tabelas no MySQL / estrutura no DynamoDB).</li>
+                <li>Decidir e implementar <strong>estruturas de dados</strong> na aplicação (listas, filas, mapas, históricos) para:
+                    <ul>
+                        <li>Organizar as leituras de temperatura;</li>
+                        <li>Guardar eventos de botão;</li>
+                        <li>Recuperar dados de forma eficiente para o app/dashboard.</li>
+                    </ul>
+                </li>
+                <li>Implementar ao menos um <strong>recurso simples de IA/análise inteligente</strong>, por exemplo:
+                    <ul>
+                        <li>Classificar estado (normal, atenção, crítico) com base em limites;</li>
+                        <li>Identificar anomalias (temperatura fora do padrão em relação à média);</li>
+                        <li>Fazer uma pequena previsão ou alerta de tendência.</li>
+                    </ul>
+                </li>
+                <li>Documentar essa lógica e como ela ajuda a tomada de decisão na XYZ.</li>
+            </ul>
+            <p><strong>Disciplinas mais ligadas:</strong></p>
+            <ul>
+                <li>Aplicações de Inteligência Artificial</li>
+                <li>Estruturas de Dados</li>
+                <li>Banco de Dados</li>
+            </ul>
+        </div>
+
+    </main>
+
+</div>
+</body>
+</html>
+
+

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>PI III - XYZ | Arquitetura</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="page-wrapper">
+
+    <aside class="sidebar">
+        <div class="brand">
+            <div class="brand-title">Projeto Integrador III</div>
+            <div class="brand-subtitle">Empresa XYZ Metalúrgica Integrada Ltda.</div>
+        </div>
+
+        <div class="nav-section-title">Navegação</div>
+        <ul class="nav-menu">
+            <li><a href="index.html"><span class="icon">🏠</span>Visão geral</a></li>
+            <li><a href="situacao.html"><span class="icon">📄</span>Situação-problema</a></li>
+            <li><a href="escopo.html"><span class="icon">🎯</span>Escopo técnico</a></li>
+            <li><a href="arquitetura.html" class="active"><span class="icon">🧱</span>Arquitetura</a></li>
+            <li><a href="grupos.html"><span class="icon">👥</span>Grupos & Funções</a></li>
+            <li><a href="entregaveis.html"><span class="icon">📦</span>Entregáveis</a></li>
+            <li><a href="diagrama.html"><span class="icon">🗺️</span>Diagrama</a></li>
+        </ul>
+
+        <div class="sidebar-footer">
+            Dois cenários, uma solução
+        </div>
+    </aside>
+
+    <main class="content">
+        <div class="page-header">
+            <div>
+                <div class="page-title">Arquitetura em dois cenários</div>
+                <div class="page-subtitle">IaaS vs PaaS na prática</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">Visão geral</div>
+            <p>
+                A XYZ quer avaliar <strong>duas abordagens diferentes</strong> de solução em nuvem.
+                <strong>Todos os grupos devem implementar ambos os cenários</strong>, para que a empresa
+                possa comparar vantagens, desvantagens e complexidade de cada um.
+            </p>
+            <div class="info-box">
+                <strong>Núcleo comum:</strong> Em ambos os cenários, existe um <strong>CLP</strong> que envia dados 
+                (temperatura, botão) e recebe comandos (LED) via MQTT. A diferença está em <strong>como</strong> 
+                esses dados são processados e armazenados na nuvem.
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">
+                <span class="icon">☁️</span> Cenário 1 – Infraestrutura própria (IaaS)
+            </div>
+            <p><strong>Stack:</strong> EC2 + Mosquitto + Node-RED + MySQL</p>
+
+            <p><strong>O que fazer:</strong></p>
+            <ul>
+                <li>Criar uma instância <strong>EC2 com Linux</strong> na AWS, que funcionará como "servidor industrial na nuvem".</li>
+                <li>Instalar e configurar dentro da EC2:
+                    <ul>
+                        <li><strong>Mosquitto</strong> como broker MQTT;</li>
+                        <li><strong>Node-RED</strong> para orquestração de fluxos IoT;</li>
+                        <li><strong>MySQL</strong> para armazenamento de dados.</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <p><strong>Fluxo de dados:</strong></p>
+            <ol style="margin-left: 18px;">
+                <li>CLP/simulador envia <strong>temperatura</strong> e <strong>evento de botão</strong> via MQTT.</li>
+                <li>Mensagens chegam ao <strong>Mosquitto</strong> (broker na EC2).</li>
+                <li><strong>Node-RED</strong> assina os tópicos MQTT e:
+                    <ul>
+                        <li>recebe as mensagens;</li>
+                        <li>processa os dados (ex.: aplica limites de temperatura, classifica estado em normal/atenção/crítico);</li>
+                        <li>grava os dados no <strong>MySQL</strong>;</li>
+                        <li>atualiza um <strong>dashboard web</strong> em tempo real.</li>
+                    </ul>
+                </li>
+                <li>Dashboard exibe:
+                    <ul>
+                        <li>temperatura atual;</li>
+                        <li>histórico em gráfico ou tabela;</li>
+                        <li>registro visual de acionamento de botão (últimos eventos).</li>
+                    </ul>
+                </li>
+                <li>Quando o supervisor/operador envia um comando via dashboard/app (ex.: "Acionar LED de alerta"):
+                    <ul>
+                        <li>mensagem vai para Node-RED;</li>
+                        <li>Node-RED publica no Mosquitto;</li>
+                        <li>Mosquitto encaminha ao CLP;</li>
+                        <li>CLP aciona o LED.</li>
+                    </ul>
+                </li>
+            </ol>
+
+            <p><strong>Características:</strong></p>
+            <ul>
+                <li><strong>Controle total:</strong> você gerencia tudo (SO, portas, segurança, backups).</li>
+                <li><strong>Flexibilidade:</strong> pode customizar qualquer parte do fluxo.</li>
+                <li><strong>Responsabilidade:</strong> você é responsável por manutenção, atualizações, escalabilidade.</li>
+                <li><strong>DevOps:</strong> oportunidade de praticar provisionamento, versionamento, CI/CD.</li>
+            </ul>
+
+            <p><strong>Interface industrial:</strong></p>
+            <ul>
+                <li>Dashboard do Node-RED (web responsivo, acessível via navegador no celular).</li>
+                <li>Cores claras para estados (verde = normal, amarelo = atenção, vermelho = crítico).</li>
+                <li>Informações essenciais em destaque, sem poluição visual.</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <div class="card-title">
+                <span class="icon">🌐</span> Cenário 2 – Serviços gerenciados (PaaS)
+            </div>
+            <p><strong>Stack:</strong> AWS IoT Core + BD gerenciado + MQTT Dash</p>
+
+            <p><strong>O que fazer:</strong></p>
+            <ul>
+                <li>Configurar o <strong>AWS IoT Core</strong> como broker MQTT gerenciado:
+                    <ul>
+                        <li>criar "things" (representação do CLP);</li>
+                        <li>gerar certificados e políticas de segurança;</li>
+                        <li>definir tópicos MQTT para:
+                            <ul>
+                                <li>temperatura;</li>
+                                <li>eventos de botão;</li>
+                                <li>comandos para LED.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>Criar <strong>IoT Rules</strong> (ou funções <strong>Lambda</strong>) para:
+                    <ul>
+                        <li>receber mensagens do broker;</li>
+                        <li>armazenar em um banco de dados gerenciado (<strong>RDS</strong> ou <strong>DynamoDB</strong>).</li>
+                    </ul>
+                </li>
+                <li>Configurar o aplicativo <strong>MQTT Dash</strong> em um dispositivo móvel para:
+                    <ul>
+                        <li>conectar ao AWS IoT Core (via certificado);</li>
+                        <li>assinar tópicos MQTT e exibir dados em tempo real;</li>
+                        <li>publicar comandos (ex.: ligar/desligar LED).</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <p><strong>Fluxo de dados:</strong></p>
+            <ol style="margin-left: 18px;">
+                <li>CLP/simulador envia <strong>temperatura</strong> e <strong>evento de botão</strong> via MQTT.</li>
+                <li>Mensagens chegam ao <strong>AWS IoT Core</strong> (broker gerenciado).</li>
+                <li><strong>IoT Rules</strong> (ou Lambda) processam e armazenam os dados em um banco gerenciado.</li>
+                <li><strong>MQTT Dash</strong> no celular:
+                    <ul>
+                        <li>conecta ao AWS IoT Core;</li>
+                        <li>recebe temperatura em tempo real (exibe em gauge, gráfico, etc.);</li>
+                        <li>mostra indicador de eventos de botão;</li>
+                        <li>permite enviar comando para ligar/desligar LED (publica em tópico específico).</li>
+                    </ul>
+                </li>
+                <li>Quando um comando é publicado:
+                    <ul>
+                        <li>AWS IoT Core recebe;</li>
+                        <li>encaminha ao CLP;</li>
+                        <li>CLP aciona o LED.</li>
+                    </ul>
+                </li>
+            </ol>
+
+            <p><strong>Características:</strong></p>
+            <ul>
+                <li><strong>Menos infraestrutura:</strong> AWS gerencia broker, escalabilidade, backups.</li>
+                <li><strong>Menos responsabilidade:</strong> você foca em lógica, não em manutenção de servidor.</li>
+                <li><strong>Segurança gerenciada:</strong> certificados, políticas, criptografia já vêm prontos.</li>
+                <li><strong>Escalabilidade automática:</strong> suporta muitos dispositivos sem você se preocupar.</li>
+                <li><strong>Custo variável:</strong> você paga por mensagens e armazenamento, não por servidor fixo.</li>
+            </ul>
+
+            <p><strong>Interface mobile:</strong></p>
+            <ul>
+                <li>MQTT Dash é um app genérico, mas você configura widgets claros e compreensíveis.</li>
+                <li>Nomes de tópicos e labels devem ser simples (ex.: "Temp Motor", "Evento Operador", "LED Manutenção").</li>
+                <li>Fácil de usar, mesmo para operadores sem experiência técnica.</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <div class="card-title">Comparação: Cenário 1 vs Cenário 2</div>
+            <table style="width: 100%; border-collapse: collapse; margin-top: 8px;">
+                <tr style="border-bottom: 1px solid rgba(148, 163, 184, 0.3);">
+                    <th style="text-align: left; padding: 8px; color: var(--accent);">Aspecto</th>
+                    <th style="text-align: left; padding: 8px; color: var(--accent);">Cenário 1 (EC2)</th>
+                    <th style="text-align: left; padding: 8px; color: var(--accent);">Cenário 2 (PaaS)</th>
+                </tr>
+                <tr style="border-bottom: 1px solid rgba(148, 163, 184, 0.3);">
+                    <td style="padding: 8px;"><strong>Controle</strong></td>
+                    <td style="padding: 8px;">Total</td>
+                    <td style="padding: 8px;">Parcial (AWS gerencia)</td>
+                </tr>
+                <tr style="border-bottom: 1px solid rgba(148, 163, 184, 0.3);">
+                    <td style="padding: 8px;"><strong>Responsabilidade</strong></td>
+                    <td style="padding: 8px;">Alta (manutenção, segurança)</td>
+                    <td style="padding: 8px;">Baixa (AWS cuida)</td>
+                </tr>
+                <tr style="border-bottom: 1px solid rgba(148, 163, 184, 0.3);">
+                    <td style="padding: 8px;"><strong>Escalabilidade</strong></td>
+                    <td style="padding: 8px;">Manual (você gerencia)</td>
+                    <td style="padding: 8px;">Automática</td>
+                </tr>
+                <tr style="border-bottom: 1px solid rgba(148, 163, 184, 0.3);">
+                    <td style="padding: 8px;"><strong>Custo</strong></td>
+                    <td style="padding: 8px;">Fixo (EC2 rodando 24/7)</td>
+                    <td style="padding: 8px;">Variável (por uso)</td>
+                </tr>
+                <tr style="border-bottom: 1px solid rgba(148, 163, 184, 0.3);">
+                    <td style="padding: 8px;"><strong>Complexidade</strong></td>
+                    <td style="padding: 8px;">Maior (mais componentes)</td>
+                    <td style="padding: 8px;">Menor (serviços prontos)</td>
+                </tr>
+                <tr style="border-bottom: 1px solid rgba(148, 163, 184, 0.3);">
+                    <td style="padding: 8px;"><strong>DevOps</strong></td>
+                    <td style="padding: 8px;">Mais prático (provisionamento)</td>
+                    <td style="padding: 8px;">Mais conceitual (IaC)</td>
+                </tr>
+                <tr>
+                    <td style="padding: 8px;"><strong>Aprendizado</strong></td>
+                    <td style="padding: 8px;">Profundo (entender tudo)</td>
+                    <td style="padding: 8px;">Focado (integração)</td>
+                </tr>
+            </table>
+        </div>
+
+    </main>
+
+</div>
+</body>
+</html>
