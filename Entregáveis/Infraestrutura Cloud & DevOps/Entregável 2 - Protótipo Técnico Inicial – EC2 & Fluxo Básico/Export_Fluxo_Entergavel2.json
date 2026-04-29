@@ -1,0 +1,24 @@
+[
+    {
+        "id": "aee5ef30167fd53f",
+        "type": "function",
+        "z": "495f627a7ae33d30",
+        "name": "function 2",
+        "func": "msg.topic = \"INSERT INTO dados (temperatura, botao) VALUES (?, ?)\";\nmsg.payload = [msg.payload.temperatura, msg.payload.botao];\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 260,
+        "wires": [
+            [
+                "edaa67524d0cface",
+                "e2ad5bfe1d8f3f65",
+                "42ead2ef8da87714"
+            ]
+        ]
+    }
+]
