@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-primary-dark: #0a1931;
+  --color-primary-base: #185adb;
+  --color-surface: #f4f9f9;
+  --color-muted: #a2aab3;
+  --color-success: #28a745;
+  --color-warning: #ffc107;
+  --color-danger: #dc3545;
+}
+
+html {
+  font-size: 15px;
+  background-color: var(--color-surface);
+  color: var(--color-primary-dark);
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16.5px;
+  }
+}
+
+@media (min-width: 1024px) {
+  html {
+    font-size: 18px;
+  }
+}
+
+html.dark {
+  background-color: var(--color-primary-dark);
+  color: var(--color-surface);
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: var(--font-montserrat), Montserrat, system-ui, -apple-system,
+    sans-serif;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background-color: inherit;
+  color: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+input {
+  font-family: inherit;
+}

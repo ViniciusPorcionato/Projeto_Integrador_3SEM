@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__plugin_figma_figma__get_metadata",
+      "Bash(npm -v)",
+      "Bash(npx --yes create-next-app@14 mmautomacoes --js --tailwind --eslint --no-app --no-src-dir --import-alias \"@/*\" --use-npm)",
+      "Bash(npm run *)",
+      "Bash(curl -s -o /dev/null -w \"splash:%{http_code}\\\\n\" http://localhost:3000/)",
+      "Bash(curl -s -o /dev/null -w \"login:%{http_code}\\\\n\" http://localhost:3000/login)",
+      "Bash(curl -s -o /dev/null -w \"home:%{http_code}\\\\n\" http://localhost:3000/home)",
+      "Bash(npm install *)"
+    ]
+  }
+}
